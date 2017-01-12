@@ -1,0 +1,59 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    compileSdkVersion 24
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.example.audiorecorder"
+        minSdkVersion 15
+        targetSdkVersion 24
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+//        ndk {
+//            cFlags += "-I" + file("src/main/cpp/config").absolutePath
+//            cFlags += "-I" + file("src/main/cpp/ogg/include").absolutePath
+//            cFlags += "-I" + file("src/main/cpp/flac/include").absolutePath
+//            cFlags += "-I" + file("src/main/cpp/flac/src/libFLAC/include").absolutePath
+//        }
+//        externalNativeBuild {
+//            cmake {
+//                cppFlags += "-I" + file("src/main/cpp/config").absolutePath
+//                cppFlags += "-I" + file("src/main/cpp/ogg/include").absolutePath
+//                cppFlags += "-I" + file("src/main/cpp/flac/include").absolutePath
+//                cppFlags += "-I" + file("src/main/cpp/flac/src/libFLAC/include").absolutePath
+//            }
+//        }
+//        ndk {
+//            cFlags += "-DVERSION=\"1.2\""
+//        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+//        ndkBuild {
+//            path "src/main/cpp/Android.mk"
+//
+//        }
+    }
+
+
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:24.2.1'
+    testCompile 'junit:junit:4.12'
+}
